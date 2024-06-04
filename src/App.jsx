@@ -7,6 +7,7 @@ import Login from "./components/Login/login";
 import Home from "./components/Home/Home";
 import Product from "./components/Product/product";
 import Category from "./components/category/Home";
+import { BASE_API } from "./consts/api";
 function App() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -15,9 +16,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://backend-clostech-7hke.onrender.com"
-        );
+        const response = await fetch(`${BASE_API}`);
         if (!response.ok) {
           throw new Error(
             `Network response was not ok: ${response.statusText}`
