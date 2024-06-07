@@ -14,7 +14,7 @@ function Category() {
         let next = true;
 
         while (next) {
-          const response = await fetch(`${API}/category?page=${current}`);
+          const response = await fetch(`${API}/form`);
 
           const { data, currentPage, nextPage } = await response.json();
           allCategories = [...allCategories, ...data];
@@ -32,26 +32,33 @@ function Category() {
     fetchCategories();
   }, []);
   return (
-    <div>
-      <h1>Categories</h1>
-      {loading ? (
-        <>loading...</>
-      ) : (
-        <div>
-          <form>
-            <label>Select an option</label>
-            <select multiple id="categories">
-              <option selected>Choose countries</option>
-              {categories?.map((category) => (
-                <option key={category.id} value={category.name} name="category">
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </form>
-        </div>
-      )}
-    </div>
+    console.log(categories),
+    (
+      <div>
+        <h1>Categories</h1>
+        {loading ? (
+          <>loading...</>
+        ) : (
+          <div>
+            <form>
+              <label>Select an option</label>
+              <select multiple id="categories">
+                <option selected>Choose countries</option>
+                {categories?.map((category) => (
+                  <option
+                    key={category.id}
+                    value={category.name}
+                    name="category"
+                  >
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </form>
+          </div>
+        )}
+      </div>
+    )
   );
 }
 
